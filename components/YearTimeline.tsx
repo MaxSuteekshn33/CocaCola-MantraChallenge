@@ -30,8 +30,10 @@ export default function YearTimeline({ items, onYearClick, accentColor = "#E8000
               onMouseEnter={() => setHovered(item.year)}
               onMouseLeave={() => setHovered(null)}
               className="relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 active:scale-95"
-            style={{ minHeight: "44px", display: "flex", alignItems: "center" }}
               style={{
+                minHeight: "44px",
+                display: "flex",
+                alignItems: "center",
                 background: isHovered ? accentColor : "rgba(255,255,255,0.06)",
                 color: isHovered ? "white" : "rgba(255,255,255,0.5)",
                 border: `1px solid ${isHovered ? accentColor : "rgba(255,255,255,0.1)"}`,
