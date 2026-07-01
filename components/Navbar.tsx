@@ -52,14 +52,17 @@ export default function Navbar() {
 
         {/* Hamburger */}
         <button
-          className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-xl transition-all"
+          className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl transition-all relative"
           style={{ background: menuOpen ? "rgba(232,0,13,0.15)" : "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}
           onClick={() => setMenuOpen((o) => !o)}
           aria-label="Toggle menu"
         >
-          <span className="block w-5 h-0.5 bg-white transition-all duration-300" style={{ transform: menuOpen ? "rotate(45deg) translate(2px, 3px)" : "none" }} />
-          <span className="block w-5 h-0.5 bg-white transition-all duration-300" style={{ opacity: menuOpen ? 0 : 1 }} />
-          <span className="block w-5 h-0.5 bg-white transition-all duration-300" style={{ transform: menuOpen ? "rotate(-45deg) translate(2px, -3px)" : "none" }} />
+          <span className="absolute block w-5 h-0.5 bg-white transition-all duration-300 ease-in-out"
+            style={{ transform: menuOpen ? "rotate(45deg)" : "translateY(-5px)" }} />
+          <span className="absolute block w-5 h-0.5 bg-white transition-all duration-300 ease-in-out"
+            style={{ opacity: menuOpen ? 0 : 1, transform: menuOpen ? "scaleX(0)" : "scaleX(1)" }} />
+          <span className="absolute block w-5 h-0.5 bg-white transition-all duration-300 ease-in-out"
+            style={{ transform: menuOpen ? "rotate(-45deg)" : "translateY(5px)" }} />
         </button>
       </nav>
 
