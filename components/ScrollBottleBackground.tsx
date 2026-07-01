@@ -11,15 +11,14 @@ export default function ScrollBottleBackground() {
       const scrollY = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
 
-      // Complete the reveal in the first 70% of scroll so it's clearly visible
-      const progress = Math.min(Math.max(scrollY / (docHeight * 0.7), 0), 1);
+      // Reveal completes by 75% of page scroll
+      const progress = Math.min(Math.max(scrollY / (docHeight * 0.75), 0), 1);
 
-      // Clip from bottom: 100% hidden → 0% hidden as user scrolls
+      // inset(top right bottom left)
+      // bottom clip shrinks from 100% → 0% = cap reveals first, base last
       const hidden = Math.round((1 - progress) * 100);
       bottleRef.current.style.clipPath = `inset(0 0 ${hidden}% 0)`;
-
-      // Opacity: starts at 0.15, reaches 0.35 at full reveal — clearly visible
-      bottleRef.current.style.opacity = String(0.15 + progress * 0.2);
+      bottleRef.current.style.opacity = String(0.12 + progress * 0.2);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -28,20 +27,23 @@ export default function ScrollBottleBackground() {
   }, []);
 
   return (
+    // Fixed, full screen, centred
     <div
-      className="fixed inset-0 pointer-events-none z-0 flex items-center justify-end pr-4 md:pr-16"
+      className="fixed inset-0 pointer-events-none z-0 flex items-start justify-center"
       aria-hidden="true"
     >
       <div
         ref={bottleRef}
-        className="w-40 md:w-64 lg:w-80 h-full"
-        style={{ clipPath: "inset(0 0 100% 0)", opacity: 0.15 }}
+        // Narrow column so the bottle sits neatly in the centre without covering text
+        className="w-32 sm:w-44 md:w-56 h-full"
+        style={{ clipPath: "inset(0 0 100% 0)", opacity: 0.12 }}
       >
         <img
           src="/assets/background_image.webp"
           alt=""
-          className="w-full h-full object-contain object-center"
-          style={{ filter: "brightness(0.6) saturate(0.4)" }}
+          // object-contain + top-aligned so cap is at the very top of the viewport
+          className="w-full h-full object-contain object-top"
+          style={{ filter: "brightness(0.55) saturate(0.35)" }}
         />
       </div>
     </div>
