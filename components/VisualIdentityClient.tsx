@@ -164,7 +164,7 @@ export default function VisualIdentityClient() {
   const [modal, setModal] = useState<CardItem | null>(null);
 
   return (
-    <main className="min-h-screen pt-24 pb-24" style={{ background: "#0A0A0A" }}>
+    <main className="min-h-screen pt-28 pb-24" style={{ background: "#0A0A0A" }}>
       {/* Hero */}
       <section className="text-center px-6 py-16 max-w-3xl mx-auto">
         <p className="text-xs tracking-[0.4em] uppercase mb-4 font-medium" style={{ color: "#E8000D" }}>

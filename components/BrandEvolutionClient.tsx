@@ -69,7 +69,7 @@ export default function BrandEvolutionClient() {
   const era = eras[activeEra];
 
   return (
-    <main className="min-h-screen pt-24 pb-24" style={{ background: "#0A0A0A" }}>
+    <main className="min-h-screen pt-28 pb-24" style={{ background: "#0A0A0A" }}>
 
       {/* Hero */}
       <section className="text-center px-6 py-16 max-w-3xl mx-auto">
