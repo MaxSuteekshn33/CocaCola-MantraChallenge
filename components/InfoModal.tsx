@@ -36,9 +36,9 @@ export default function InfoModal({ year, title, description, image, onClose }: 
         onClick={(e) => e.stopPropagation()}
       >
         {/* Image */}
-        <div className="relative h-52 overflow-hidden">
-          <img src={image} alt={title} className="w-full h-full object-cover" />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 40%, rgba(18,18,18,0.95))" }} />
+        <div className="relative overflow-hidden flex items-center justify-center" style={{ height: "320px", background: "rgba(8,8,8,0.95)" }}>
+          <img src={image} alt={title} className="w-full h-full object-contain p-4" />
+          <div className="absolute bottom-0 left-0 right-0 h-12" style={{ background: "linear-gradient(to top, rgba(18,18,18,0.95), transparent)" }} />
           <div className="absolute top-0 left-0 right-0 h-0.5" style={{ background: "linear-gradient(to right, #E8000D, transparent)" }} />
         </div>
 
