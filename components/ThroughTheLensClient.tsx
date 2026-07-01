@@ -174,7 +174,7 @@ export default function ThroughTheLensClient() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {culturalMoments.map((item, i) => (
             <div
               key={i}
@@ -234,13 +234,12 @@ export default function ThroughTheLensClient() {
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-5 justify-center">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
           {celebrities.map((celeb, i) => (
             <div
               key={i}
               className="group relative overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-2"
               style={{
-                width: "200px",
                 border: "1px solid rgba(255,255,255,0.08)",
                 boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
               }}
@@ -283,7 +282,7 @@ export default function ThroughTheLensClient() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {modernCollabs.map((collab, i) => (
             <div
               key={i}
@@ -358,7 +357,7 @@ export default function ThroughTheLensClient() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {quotes.map((q, i) => (
             <div
               key={i}

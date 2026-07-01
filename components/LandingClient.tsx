@@ -13,7 +13,7 @@ export default function LandingClient() {
   }, []);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black flex items-center justify-center">
+    <div className="relative w-full overflow-hidden bg-black flex items-center justify-center" style={{ minHeight: "100dvh" }}>
       {/* Video background */}
       <video
         ref={videoRef}
@@ -50,12 +50,12 @@ export default function LandingClient() {
             Brand Evolution · Since 1886
           </p>
           <h1
-            className="text-6xl md:text-8xl font-black tracking-tight text-white"
+            className="text-5xl sm:text-6xl md:text-8xl font-black tracking-tight text-white"
             style={{ textShadow: "0 0 60px rgba(232,0,13,0.5)" }}
           >
             Coca‑Cola
           </h1>
-          <p className="text-white/50 text-lg mt-3 tracking-widest uppercase font-light">
+          <p className="text-white/50 text-base md:text-lg mt-3 tracking-widest uppercase font-light">
             The Mantra Challenge
           </p>
         </div>

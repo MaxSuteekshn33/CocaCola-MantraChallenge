@@ -112,7 +112,7 @@ export default function BrandEvolutionClient() {
             background: "rgba(255,255,255,0.03)",
           }}
         >
-          <div className="grid md:grid-cols-2 min-h-[480px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 min-h-[480px]">
             {/* Image */}
             <div className="relative overflow-hidden" style={{ minHeight: "320px" }}>
               <img
@@ -208,7 +208,7 @@ export default function BrandEvolutionClient() {
           <p className="text-white/40 text-sm ml-14">How the palette evolved while red stayed constant</p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
           {colorDNA.map((c) => (
             <div
               key={c.hex}
@@ -242,7 +242,7 @@ export default function BrandEvolutionClient() {
           <p className="text-white/40 text-sm ml-14">Same soul. New choice.</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Classic */}
           <div
             className="rounded-2xl p-8 flex flex-col gap-4"

@@ -183,7 +183,7 @@ export default function VisualIdentityClient() {
             <span className="text-4xl font-black text-white/10">01</span>
             <h2 className="text-2xl md:text-3xl font-bold text-white">The Bottle Through Time</h2>
           </div>
-          <p className="text-white/40 text-sm ml-14">Hover to explore · Click to read more</p>
+          <p className="text-white/40 text-sm ml-14"><span className="hidden md:inline">Hover to explore · </span>Tap to read more</p>
         </div>
 
         <ExpandCards items={bottleCards} onCardClick={setModal} />
@@ -209,7 +209,7 @@ export default function VisualIdentityClient() {
             <span className="text-4xl font-black text-white/10">02</span>
             <h2 className="text-2xl md:text-3xl font-bold text-white">The Logo Evolution</h2>
           </div>
-          <p className="text-white/40 text-sm ml-14">Hover to explore · Click to read more</p>
+          <p className="text-white/40 text-sm ml-14"><span className="hidden md:inline">Hover to explore · </span>Tap to read more</p>
         </div>
 
         <ExpandCards items={logoCards} onCardClick={setModal} />
