@@ -89,38 +89,38 @@ const modernCollabs = [
   },
   {
     brand: "FIFA World Cup",
+    image: "/assets/collab_fifa.avif",
     description: "Official soft drink of the FIFA World Cup since 1978. Coca-Cola's football presence spans 5 decades and every continent — the most consistent brand in the game.",
     year: "1978–Present",
     tags: ["Sports", "Global"],
-    color: "#1A3A5C",
   },
   {
     brand: "Olympics",
+    image: "/assets/collab_olympics.webp",
     description: "The world's oldest corporate Olympic sponsor. Present at every Games since 1928 — 96 years of fuelling the human spirit of competition.",
     year: "1928–Present",
     tags: ["Sports", "Heritage"],
-    color: "#1A1A2E",
   },
   {
     brand: "K-Pop / BTS",
+    image: "/assets/collab_bts_fifa.jpeg",
     description: "Coca-Cola partnered with BTS for the 2022 FIFA World Cup anthem campaign — reaching billions of Gen Z fans globally and proving the brand moves with culture, not against it.",
     year: "2022",
     tags: ["Music", "Gen Z"],
-    color: "#2A1A3A",
   },
   {
     brand: "Bollywood & India",
+    image: "/assets/collab_india.webp",
     description: "From Aamir Khan to Diljit Dosanjh, Coca-Cola has consistently partnered with India's biggest cultural icons — making the brand feel local in the world's most diverse market.",
     year: "1990s–Now",
     tags: ["India", "Regional"],
-    color: "#2A1A1A",
   },
   {
     brand: "Gaming & Esports",
+    image: "/assets/collab_gaming.jpeg",
     description: "Coca-Cola entered esports with League of Legends and gaming event sponsorships — meeting the next generation of consumers exactly where they live.",
     year: "2020s",
     tags: ["Gaming", "Digital"],
-    color: "#0A2A1A",
   },
 ];
 
@@ -339,37 +339,26 @@ export default function ThroughTheLensClient() {
           {modernCollabs.map((collab, i) => (
             <div
               key={i}
-              className="rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1"
-              style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)",
-              }}
+              className="rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 active:scale-[0.98]"
+              style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
+              onClick={() => setModal({ image: collab.image, year: collab.year, title: collab.brand, description: collab.description })}
             >
-              {collab.image && (
-                <div className="relative h-40 overflow-hidden">
-                  <img
-                    src={collab.image}
-                    alt={collab.brand}
-                    className="w-full h-full object-cover"
-                    style={{ filter: "brightness(0.7)" }}
-                  />
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.8), transparent)" }} />
-                </div>
-              )}
-              {!collab.image && (
-                <div
-                  className="h-20 flex items-center justify-center"
-                  style={{ background: `linear-gradient(135deg, ${collab.color || "#1A1A2E"}, rgba(0,0,0,0.5))` }}
-                >
-                  <span className="text-white/20 text-xs tracking-widest uppercase font-bold">{collab.brand}</span>
-                </div>
-              )}
+              {/* Image — object-contain so nothing gets cropped */}
+              <div className="relative flex items-center justify-center overflow-hidden" style={{ height: "180px", background: "#0d0d0d" }}>
+                <img
+                  src={collab.image}
+                  alt={collab.brand}
+                  className="w-full h-full object-contain"
+                  style={{ filter: "brightness(0.85)" }}
+                />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%)" }} />
+              </div>
               <div className="p-5">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-white font-bold text-base">{collab.brand}</h3>
                   <span className="text-white/40 text-xs">{collab.year}</span>
                 </div>
-                <p className="text-white/55 text-xs leading-relaxed mb-4">{collab.description}</p>
+                <p className="text-white/55 text-xs leading-relaxed mb-4 line-clamp-2">{collab.description}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {collab.tags.map((tag) => (
                     <span
@@ -385,6 +374,7 @@ export default function ThroughTheLensClient() {
                     </span>
                   ))}
                 </div>
+                <p className="text-xs mt-3 font-medium" style={{ color: "#E8000D" }}>Tap to read more →</p>
               </div>
             </div>
           ))}
