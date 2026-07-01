@@ -40,15 +40,15 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="px-3 py-2 rounded-full font-medium transition-all duration-300 text-center"
+              className="px-4 py-2 rounded-full font-semibold transition-all duration-300 text-center"
               style={{
                 background: active ? "#E8000D" : "rgba(255,255,255,0.05)",
-                color: active ? "white" : "rgba(255,255,255,0.55)",
+                color: active ? "white" : "rgba(255,255,255,0.65)",
                 border: active ? "1px solid #E8000D" : "1px solid rgba(255,255,255,0.08)",
-                fontSize: "11px",
+                fontSize: "13px",
                 letterSpacing: "0.02em",
                 whiteSpace: "nowrap",
-                minHeight: "36px",
+                minHeight: "38px",
                 display: "flex",
                 alignItems: "center",
               }}
