@@ -147,11 +147,73 @@ const tagColors: Record<string, string> = {
   "Limited Edition": "#8B2A1A",
 };
 
+interface ModalData {
+  image: string;
+  year?: string;
+  tag?: string;
+  name?: string;
+  era?: string;
+  title: string;
+  description: string;
+}
+
 export default function ThroughTheLensClient() {
-  const [activeCard, setActiveCard] = useState<number | null>(null);
+  const [modal, setModal] = useState<ModalData | null>(null);
 
   return (
     <main className="min-h-screen pt-28 pb-24" style={{ background: "#0A0A0A" }}>
+
+      {/* ── MODAL ── */}
+      {modal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ background: "rgba(0,0,0,0.85)", backdropFilter: "blur(8px)" }}
+          onClick={() => setModal(null)}
+        >
+          <div
+            className="relative w-full max-w-lg rounded-2xl overflow-hidden"
+            style={{
+              background: "rgba(18,18,18,0.98)",
+              border: "1px solid rgba(232,0,13,0.3)",
+              boxShadow: "0 0 60px rgba(232,0,13,0.2), 0 24px 64px rgba(0,0,0,0.7)",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Image */}
+            <div className="relative flex items-center justify-center" style={{ height: "280px", background: "#080808" }}>
+              <img src={modal.image} alt={modal.title} className="w-full h-full object-contain p-4" />
+              <div className="absolute bottom-0 left-0 right-0 h-10" style={{ background: "linear-gradient(to top, rgba(18,18,18,0.98), transparent)" }} />
+              <div className="absolute top-0 left-0 right-0 h-0.5" style={{ background: "linear-gradient(to right, #E8000D, transparent)" }} />
+              {modal.year && (
+                <span className="absolute top-4 left-4 text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: "#E8000D", color: "white" }}>
+                  {modal.year}
+                </span>
+              )}
+              {modal.tag && (
+                <span className="absolute top-4 right-10 text-xs px-2.5 py-1 rounded-full" style={{ background: "rgba(0,0,0,0.6)", color: "rgba(255,255,255,0.7)", border: "1px solid rgba(255,255,255,0.15)" }}>
+                  {modal.tag}
+                </span>
+              )}
+            </div>
+            {/* Content */}
+            <div className="p-6 flex flex-col gap-2">
+              {modal.era && <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "#E8000D" }}>{modal.era}</span>}
+              <h2 className="text-white font-bold text-xl">{modal.title}</h2>
+              <p className="text-white/70 text-sm leading-relaxed">{modal.description}</p>
+            </div>
+            {/* Close */}
+            <button
+              onClick={() => setModal(null)}
+              className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center"
+              style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)" }}
+            >
+              <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Hero */}
       <section className="text-center px-6 py-16 max-w-3xl mx-auto">
@@ -178,37 +240,30 @@ export default function ThroughTheLensClient() {
           {culturalMoments.map((item, i) => (
             <div
               key={i}
-              className="group relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1"
-              style={{
-                border: "1px solid rgba(255,255,255,0.08)",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
-              }}
-              onClick={() => setActiveCard(activeCard === i ? null : i)}
+              className="group relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 active:scale-[0.98]"
+              style={{ border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 4px 24px rgba(0,0,0,0.4)" }}
+              onClick={() => setModal({ image: item.image, year: item.year, tag: item.tag, title: item.title, description: item.description })}
             >
-              <div className="relative h-52 overflow-hidden">
+              {/* Image with object-contain on dark bg so nothing gets cropped */}
+              <div className="relative flex items-center justify-center overflow-hidden" style={{ height: "220px", background: "#0d0d0d" }}>
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  style={{ filter: "brightness(0.75)" }}
+                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                  style={{ filter: "brightness(0.85)" }}
                 />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%)" }} />
-                <span
-                  className="absolute top-4 left-4 text-xs font-bold px-2.5 py-1 rounded-full"
-                  style={{ background: "#E8000D", color: "white" }}
-                >
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%)" }} />
+                <span className="absolute top-3 left-3 text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: "#E8000D", color: "white" }}>
                   {item.year}
                 </span>
-                <span
-                  className="absolute top-4 right-4 text-xs px-2.5 py-1 rounded-full"
-                  style={{ background: "rgba(0,0,0,0.6)", color: "rgba(255,255,255,0.7)", border: "1px solid rgba(255,255,255,0.15)" }}
-                >
+                <span className="absolute top-3 right-3 text-xs px-2.5 py-1 rounded-full" style={{ background: "rgba(0,0,0,0.6)", color: "rgba(255,255,255,0.7)", border: "1px solid rgba(255,255,255,0.15)" }}>
                   {item.tag}
                 </span>
               </div>
-              <div className="p-5" style={{ background: "rgba(18,18,18,0.95)" }}>
-                <h3 className="text-white font-bold text-base mb-2">{item.title}</h3>
-                <p className="text-white/55 text-xs leading-relaxed line-clamp-3">{item.description}</p>
+              <div className="p-5" style={{ background: "rgba(18,18,18,0.98)" }}>
+                <h3 className="text-white font-bold text-base mb-1">{item.title}</h3>
+                <p className="text-white/55 text-xs leading-relaxed line-clamp-2">{item.description}</p>
+                <p className="text-xs mt-2 font-medium" style={{ color: "#E8000D" }}>Tap to read more →</p>
               </div>
             </div>
           ))}
@@ -238,11 +293,9 @@ export default function ThroughTheLensClient() {
           {celebrities.map((celeb, i) => (
             <div
               key={i}
-              className="group relative overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-2"
-              style={{
-                border: "1px solid rgba(255,255,255,0.08)",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
-              }}
+              className="group relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-300 hover:-translate-y-2 active:scale-[0.98]"
+              style={{ border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 4px 24px rgba(0,0,0,0.4)" }}
+              onClick={() => setModal({ image: celeb.image, era: celeb.era, title: celeb.name, description: celeb.note })}
             >
               <div className="relative overflow-hidden" style={{ height: "260px" }}>
                 <img
