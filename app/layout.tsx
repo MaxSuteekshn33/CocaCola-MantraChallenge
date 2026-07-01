@@ -5,8 +5,11 @@ export const metadata: Metadata = {
   title: "Coca-Cola Mantra — Brand Evolution",
   description: "140 years. One timeless identity. An interactive journey through Coca-Cola's brand evolution across generations.",
   icons: {
-    icon: "/favicon.webp",
-    apple: "/favicon.webp",
+    icon: [
+      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/favicon.png",
   },
   openGraph: {
     title: "Coca-Cola Mantra — Brand Evolution",
