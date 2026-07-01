@@ -17,8 +17,12 @@ export default function Navbar() {
       style={{ background: "rgba(10,10,10,0.92)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(255,255,255,0.08)" }}
     >
       {/* Row 1 — Brand heading */}
-      <div className="flex items-center justify-center px-5 pt-3 pb-2">
-        <Link href="/" className="flex items-center gap-2">
+      <div className="flex items-center justify-center px-5 pt-4 pb-3">
+        <Link
+          href="/"
+          className="flex items-center gap-2 px-5 py-2 rounded-full transition-all duration-300"
+          style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+        >
           <span className="text-white font-bold text-base uppercase" style={{ letterSpacing: "0.18em" }}>
             Coca‑Cola
           </span>
